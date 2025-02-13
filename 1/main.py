@@ -21,7 +21,6 @@ def task1():
 def task2():
     rng = np.random.default_rng()
 
-
     series_array = pd.Series(np.arange(10))
     print("series_array", series_array)
     print("Выбор одного элемента")
@@ -68,13 +67,13 @@ def task3():
     mpl.xlabel("Likes")
     mpl.ylabel("Dislikes")
     mpl.legend()
-    mpl.show()
+    #mpl.show()
 
     mpl.hist(vids["Likes"], bins=50, edgecolor='black')
     mpl.xlabel("Number of Likes")
     mpl.ylabel("Frequency")
     mpl.title("Distribution of Likes")
-    mpl.show()
+    #mpl.show()
 
 
     vids["Video views"] = vids["Video views"].str.replace(',', '').astype(float)
@@ -86,10 +85,16 @@ def task3():
     print("Mean of Likes:", likes_mean)
     print("Median of Likes:", likes_median)
 
-    mpl.boxplot(vids["Likes"])
+    mpl.boxplot(vids["Likes"], showfliers=False)
     mpl.xlabel("Likes")
     mpl.title("Box Plot of Likes")
     mpl.show()
+
+    mpl.boxplot(vids["Likes"], showfliers=False)
+    mpl.xlabel("Likes")
+    mpl.title("Box Plot of Likes")
+    mpl.show()
+
     #Медиана (линия внутри ящика) показывает среднее значение.
     #Первый и третий квартили (границы ящика) показывают диапазон данных, где находится центральные 50% значений.
     #Усы показывают диапазон данных за пределами центральных 50%, исключая выбросы.
@@ -110,6 +115,17 @@ def task3():
     category_group = vids.groupby("Category")["Likes"].mean()
     print("Average Likes by Category:")
     print(category_group)
+
+    category_group = vids.groupby("Category")["Likes"].mean()
+    print("Average Likes by Category:")
+    print(category_group)
+
+    # Строим диаграмму столбчатую
+    category_group.plot(kind='bar')
+    mpl.xlabel("Категория")
+    mpl.ylabel("Средние лайки")
+    mpl.legend(["Средние лайки по категориям"])
+    mpl.show()
 
 
 if __name__ == '__main__':
