@@ -84,10 +84,10 @@ missing_values_after_fill = df.isnull().sum()
 print("Пропуски после заполнения:")
 print(missing_values_after_fill)
 
-# mpl.boxplot(df["Video views"])
-# mpl.xlabel("Video views")
-# mpl.title("Box Plot of Video views")
-# mpl.show()
+mpl.boxplot(df["Video views"])
+mpl.xlabel("Video views")
+mpl.title("Box Plot of Video views")
+mpl.show()
 
 #task4
 
@@ -98,7 +98,7 @@ df['Video views'] = df['Video views'].replace({',': ''}, regex=True).astype(floa
 df = df[df['Video views'] > 0]
 
 # Получаем топ-340 видео с самыми большими просмотрами
-top_20_videos = df.nlargest(340, 'Video views')
+top_20_videos = df.nlargest(320, 'Video views')
 
 # Удаляем эти топ-340 видео из данных
 df = df[~df.index.isin(top_20_videos.index)]
